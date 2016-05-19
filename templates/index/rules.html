@@ -1,0 +1,29 @@
+<h1>Rules</h1>
+<ul class="list-group">    
+    <li class="list-group-item"> 
+        <i class="fa fa-usd" aria-hidden="true"></i>   
+        Entry price: $20 per submission
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-list-ol" aria-hidden="true"></i>
+        You can only submit up to 3 times
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-calendar" aria-hidden="true"></i>  
+        June 9th is the last day you can pay to enter the competition
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-ban" aria-hidden="true"></i>  
+        If you are unable pay on time make sure to contact Ignacio or Jose, if not your submission will be deleted
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-trophy" aria-hidden="true"></i>  
+        Payouts: 1st Place: 60%, 2nd Place: 25%, 3rd Place: 10%, Costs: 5%
+    </li>
+    {% if submissions != [] %}
+    <li class="list-group-item">
+        <i class="fa fa-money" aria-hidden="true"></i>  
+        Current Payouts: 1st: ${{submissions|count * 20 * 0.60}} 2nd: ${{submissions|count * 20 * 0.25}} 3rd: ${{submissions|count * 20 * 0.1}}
+    </li>
+    {% endif %}
+</ul>

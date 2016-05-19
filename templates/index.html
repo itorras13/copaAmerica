@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Euro 2016</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="static/css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- Social CSS -->
+    <link href="static/css/bootstrap-social.css" rel="stylesheet">
+    <link href="static/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-51157838-4', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/#top">
+                        Top
+                    </a>
+                </li>
+                <li>
+                    <a href="#rules">Rules</a>
+                </li>
+                <li>
+                    <a href="#points">Point System</a>
+                </li>
+                <li>
+                    <a href="#payment">How To Pay</a>
+                </li>
+                <li>
+                    <a href="{{url_for('submit')}}">Submit Bracket</a>
+                </li>
+                <li>
+                    <a href="#standings">Standings</a>
+                </li>
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row" id="top">
+                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    <div class="col-lg-12">
+                        <h1>Welcome to the 2016 Euro Bracket Challenge</h1>
+                        <p>The 2014 World Cup Bracket was a huge success so we decided to bring it back. Hope you all enjoy!</p>
+                        <h5>Here are the Top 5 teams predicted to win</h5>
+                        {% include '/index/carousel.html' %}
+                    </div>
+                </div>
+                <div class="row" id="rules">
+                    <div class="col-lg-12">
+                        {% include '/index/rules.html' %}
+                    </div>
+                </div>
+                <div class="row" id="points">
+                    <div class="col-lg-12">
+                        {% include '/index/point_system.html' %}
+                    </div>
+                </div>
+                <div class="row" id="payment">
+                    <div class="col-lg-12">
+                        {% include '/index/payment.html' %}
+                    </div>
+                </div>
+                <div class="row" id="standings">
+                    <div class="col-lg-12">
+                        <h1>Standings</h1>
+                        {% if submissions != [] %}
+                            <p>Current Payouts: 1st: ${{submissions|count * 20 * 0.60}} 2nd: ${{submissions|count * 20 * 0.25}} 3rd: ${{submissions|count * 20 * 0.1}}</p>
+                            Once sumbissions are closed you will be able to click on names to see the brackets and winners will be shown
+                            <table class="table table-striped table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Place</th><th>Name</th><th>Submission #</th><th>Winner</th><th>Points</th><th>Paid</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% set place = 0 %}
+                                    {% set index = 0 %}
+                                    {% set previous_value = 9999 %}
+                                    {% for submission in submissions %}
+                                        {% set index = index + 1 %}
+                                        {% if submission['points'] != previous_value %}
+                                            {% set place = index %}
+                                        {% endif %}
+                                        {% set previous_value = submission['points'] %}
+                                        <tr>
+                                            <td>{{place}}</td>
+                                            <td><!-- <a href="show/{{submission['id']}}"> -->{{submission['first_name']}} {{submission['last_name']}}<!-- </a> --></td>
+                                            <td>{{submission['sub_num']}}</td>
+                                            <!-- <td>{{submission['champion']}}</td> -->
+                                            <td><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></td>
+                                            <td>{{submission['points']}}</td>
+                                            {% if submission['paid'] %}
+                                                <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                                            {% else %}
+                                                <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            Standings will be shown once all submissions are made
+                            <img class="img-responsive" src="static/img/funny_pic.jpg">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row" id="contact">
+                    <div class="col-lg-12">
+                        {% include '/index/contact.html' %}
+                    </div>
+                </div>
+                {% include 'modals.html' %}
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="static/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="static/js/bootstrap.min.js"></script>
+    {% if modal == 'success' %}
+        <script>
+            $(document).ready(function () {
+                $('#successModal').modal('show');
+            });
+        </script>
+    {% elif modal == 'failure' %}
+        <script>
+            $(document).ready(function () {
+                $('#failureModal').modal('show');
+            });
+        </script>
+    {% endif %}
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>
