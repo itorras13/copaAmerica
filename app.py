@@ -46,7 +46,7 @@ def submit():
 			message.add_to(str(request.form['first_name']) + " " +
 				str(request.form['last_name']) + ' <' + email + '>')
 			message.add_bcc('itorras13@gmail.com')
-			message.set_subject('Eurocup16 Submission Confirmed')
+			message.set_subject('Copa America 16 Submission Confirmed')
 			submissions = get_submissions("show")
 			html = render_template('email_template.html', submissions=submissions, email=email)
 			message.set_html(html)
