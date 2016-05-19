@@ -17,7 +17,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
-from models import Submission
+from models import Bracket
 
 
 @app.route('/')
@@ -33,7 +33,7 @@ def stats():
 # @app.route('/show', defaults={'email': None})
 @app.route('/show/<id>')
 def show(id):
-	sub = Submission.query.filter_by(id=id).all()
+	sub = Bracket.query.filter_by(id=id).all()
 	return render_template('show.html', sub=sub[0])
 
 @app.route('/submit', methods=['GET', 'POST'])
@@ -85,8 +85,8 @@ def create_stats():
 
 
 def get_submissions(type):
-	submissions = Submission.query.order_by(Submission.points.desc(), 
-		Submission.id.desc()).all()
+	submissions = Bracket.query.order_by(Bracket.points.desc(), 
+		Bracket.id.desc()).all()
 	if type == "show":
 		return submissions
 	else:
@@ -107,8 +107,8 @@ def get_submissions(type):
 def submit_quiniela(request):
 	email=request.form['email']
 	sub_num = request.form['submission_num']
-	if not db.session.query(Submission).filter(Submission.submission_number == sub_num, Submission.email == email).count():
-		new = Submission(request.form['first_name'], request.form['last_name'], email, sub_num,
+	if not db.session.query(Bracket).filter(Bracket.submission_number == sub_num, Bracket.email == email).count():
+		new = Bracket(request.form['first_name'], request.form['last_name'], email, sub_num,
 			request.form["a1h"], request.form["a1a"], request.form["a2h"], request.form["a2a"], request.form["a3h"], request.form["a3a"],
 			request.form["a4h"], request.form["a4a"], request.form["a5h"], request.form["a5a"], request.form["a6h"], request.form["a6a"],
 			request.form["b1h"], request.form["b1a"], request.form["b2h"], request.form["b2a"], request.form["b3h"], request.form["b3a"],
