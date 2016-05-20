@@ -117,15 +117,8 @@ def submit_quiniela(request):
 			request.form["c4h"], request.form["c4a"], request.form["c5h"], request.form["c5a"], request.form["c6h"], request.form["c6a"],
 			request.form["d1h"], request.form["d1a"], request.form["d2h"], request.form["d2a"], request.form["d3h"], request.form["d3a"],
 			request.form["d4h"], request.form["d4a"], request.form["d5h"], request.form["d5a"], request.form["d6h"], request.form["d6a"],
-			request.form["e1h"], request.form["e1a"], request.form["e2h"], request.form["e2a"], request.form["e3h"], request.form["e3a"],
-			request.form["e4h"], request.form["e4a"], request.form["e5h"], request.form["e5a"], request.form["e6h"], request.form["e6a"],
-			request.form["f1h"], request.form["f1a"], request.form["f2h"], request.form["f2a"], request.form["f3h"], request.form["f3a"],
-			request.form["f4h"], request.form["f4a"], request.form["f5h"], request.form["f5a"], request.form["f6h"], request.form["f6a"],
 			request.form["a1"], request.form["a2"], request.form["b1"], request.form["b2"], request.form["c1"], request.form["c2"],
-			request.form["d1"], request.form["d2"], request.form["e1"], request.form["e2"], request.form["f1"], request.form["f2"],
-			request.form["third1"], request.form["third2"], request.form["third3"], request.form["third4"],
-			request.form["q1"], request.form["q2"], request.form["q3"], request.form["q4"],
-			request.form["q5"], request.form["q6"], request.form["q7"], request.form["q8"],
+			request.form["d1"], request.form["d2"],
 			request.form["semi1"], request.form["semi2"], request.form["semi3"], request.form["semi4"],
 			request.form["fin1"], request.form["fin2"], request.form["third_place"], request.form["champion"], request.form["top_scorer"])
 		db.session.add(new)

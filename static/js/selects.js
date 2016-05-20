@@ -2,32 +2,6 @@ $(document).ready(function(){
     text = "Choose a Team";
     var index = 0;
     var finalists = [];
-  $('.quarter_select').on('change', function(event ) {
-    var q1 = $("#q1").children("option").filter(":selected").text();
-    var q2 = $("#q2").children("option").filter(":selected").text();
-    var q3 = $("#q3").children("option").filter(":selected").text();
-    var q4 = $("#q4").children("option").filter(":selected").text();
-    var q5 = $("#q5").children("option").filter(":selected").text();
-    var q6 = $("#q6").children("option").filter(":selected").text();
-    var q7 = $("#q7").children("option").filter(":selected").text();
-    var q8 = $("#q8").children("option").filter(":selected").text();
-    if (q1!=text&&q2!=text&&q3!=text&&q4!=text&&q5!=text&&q6!=text&&q7!=text&&q8!=text) {
-        $('.semi_select')
-            .find('option')
-            .remove()
-            .end()
-            .append('<option disabled selected value style="display: none">Choose a Team</option>')
-        ;
-        $('#s1').append($("<option></option>").attr("value",q1).text(q1));
-        $('#s1').append($("<option></option>").attr("value",q2).text(q2));
-        $('#s2').append($("<option></option>").attr("value",q3).text(q3));
-        $('#s2').append($("<option></option>").attr("value",q4).text(q4));
-        $('#s3').append($("<option></option>").attr("value",q5).text(q5));
-        $('#s3').append($("<option></option>").attr("value",q6).text(q6));
-        $('#s4').append($("<option></option>").attr("value",q7).text(q7));
-        $('#s4').append($("<option></option>").attr("value",q8).text(q8));
-    }
-  });
   $('.semi_select').on('change', function(event ) {
     var prevValue = $(this).data('previous');
     index = finalists.indexOf(prevValue);

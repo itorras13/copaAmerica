@@ -6,17 +6,14 @@ $(document).ready(function(){
 		form.addEventListener('submit', function(event) { // listen for form submitting
 	        if (!event.target.checkValidity()) {
 	        	event.preventDefault();
-	        	var inputs = ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "semi1",
-	        		"semi2", "semi3", "semi4", "fin1", "fin2", "champion", "third_place", "top_scorer"]
+	        	var inputs = ["semi1", "semi2", "semi3", "semi4", "fin1", "fin2", "champion", "third_place", "top_scorer"]
 	            for (var i = 0; i < inputs.length; ++i) {
 	            	error_text = "Your personal information has not been entered"
 					current = 'select[name="' + inputs[i] + '"]';
 					current_value = $(current).val();
 					if (current_value == null) {
 						string_array = inputs[i].split("");
-						if (string_array[0] == "q"){
-							error_text = "Quarter Finalist " + string_array[1] + " is not chosen!";
-						} else if (string_array[0] == "s"){
+						if (string_array[0] == "s"){
 							error_text = "Semi Finalist " + string_array[4] + " is not chosen!";
 						} else if (string_array[0] == "f"){
 							error_text = "Finalist " + string_array[3] + " is not chosen!";
