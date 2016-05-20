@@ -169,11 +169,18 @@ function three_way_tie(goals_per_team, team1, team2, team3) {
 }
 
 function two_way_tie(team_games, goals_per_team, input_scores, team1, team2) {
-	if (team_games[team1][team2] != undefined){
-		game_code_home = team_games[team1][team2];
-		team1_score = input_scores[game_code_home];
-		game_code_away = game_code_home.slice(0,2) + "a";
-		team2_score = input_scores[game_code_away];
+	if (team_games[team1] != undefined) {
+		if (team_games[team1][team2] != undefined){
+			game_code_home = team_games[team1][team2];
+			team1_score = input_scores[game_code_home];
+			game_code_away = game_code_home.slice(0,2) + "a";
+			team2_score = input_scores[game_code_away];
+		} else {
+			game_code_home = team_games[team2][team1];
+			team2_score = input_scores[game_code_home];
+			game_code_away = game_code_home.slice(0,2) + "a";
+			team1_score = input_scores[game_code_away];
+		}
 	} else {
 		game_code_home = team_games[team2][team1];
 		team2_score = input_scores[game_code_home];
