@@ -76,6 +76,10 @@ $(document).ready(function(){
 						second_place = two_way_tie(team_games, goals_per_team, input_scores, teamsSorted[2], teamsSorted[1]);
 						standings[curr].second_place = second_place;
 					}
+				} else if (groups[curr][teamsSorted[3]] == groups[curr][teamsSorted[0]]) {
+					order = four_way_tie(goals_per_team, teamsSorted[3], teamsSorted[2], teamsSorted[1], teamsSorted[0]);
+					standings[curr].first_place = order[0];
+					standings[curr].second_place = order[1];
 				} else if (groups[curr][teamsSorted[3]] == groups[curr][teamsSorted[1]]) {
 					first_place = three_way_tie(goals_per_team, teamsSorted[3], teamsSorted[2], teamsSorted[1]);
 					standings[curr].first_place = first_place;
@@ -142,6 +146,48 @@ function updateSemiFinalists() {
     $('#s3').append($("<option></option>").attr("value",a2).text(a2));
     $('#s4').append($("<option></option>").attr("value",c1).text(c1));
     $('#s4').append($("<option></option>").attr("value",d2).text(d2));
+}
+
+function four_way_tie(goals_per_team, team1, team2, team3, team4) {
+	order = [1,2];
+	team1_goal_for = goals_per_team[team1].goals_for;
+	team2_goal_for = goals_per_team[team2].goals_for;
+	team3_goal_for = goals_per_team[team3].goals_for;
+	team4_goal_for = goals_per_team[team4].goals_for;
+	team1_goal_diff = team1_goal_for - goals_per_team[team1].goals_against;
+	team2_goal_diff = team2_goal_for - goals_per_team[team2].goals_against;
+	team3_goal_diff = team3_goal_for - goals_per_team[team3].goals_against;
+	team4_goal_diff = team4_goal_for - goals_per_team[team4].goals_against;
+	if (team1_goal_diff > team3_goal_diff && team1_goal_diff > team2_goal_diff && team1_goal_diff > team4_goal_diff) {
+		order[0] = team1;
+	} else if (team2_goal_diff > team1_goal_diff && team2_goal_diff > team3_goal_diff && team2_goal_diff > team4_goal_diff) {
+		order[0] = team2; 
+	} else if (team3_goal_diff > team1_goal_diff && team3_goal_diff > team2_goal_diff && team3_goal_diff > team4_goal_diff) {
+		order[0] = team3;
+	} else if (team4_goal_diff > team1_goal_diff && team4_goal_diff > team2_goal_diff && team4_goal_diff > team3_goal_diff) {
+		order[0] = team4;
+	} else if (team1_goal_for > team3_goal_for && team1_goal_for > team2_goal_for && team1_goal_for > team4_goal_for) {
+		order[0] = team1;
+	} else if (team2_goal_for > team1_goal_for && team2_goal_for > team3_goal_for && team2_goal_for > team4_goal_for) {
+		order[0] = team2; 
+	} else if (team3_goal_for > team1_goal_for && team3_goal_for > team2_goal_for && team3_goal_for > team4_goal_for) {
+		order[0] = team3; 
+	} else if (team4_goal_for > team1_goal_for && team4_goal_for > team3_goal_for && team4_goal_for > team2_goal_for) {
+		order[0] = team4;
+	} else {
+		order[0] = team1;
+	}
+	if (order[0]==team1) {
+		order[1] = three_way_tie(goals_per_team, team2, team3, team4);
+	} else if(order[0]==team2) {
+		order[1] = three_way_tie(goals_per_team, team1, team3, team4);
+	} else if(order[0]==team3) {
+		order[1] = three_way_tie(goals_per_team, team1, team2, team4);
+	} else {
+		order[1] = three_way_tie(goals_per_team, team1, team2, team3);
+	}
+	return order
+
 }
 
 function three_way_tie(goals_per_team, team1, team2, team3) {
