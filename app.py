@@ -28,7 +28,7 @@ def index():
 @app.route('/stats')
 def stats():
 	current_stats = create_stats()
-	return render_template('stats.html', winners=current_stats)
+	return render_template('stats.html', stats=current_stats)
 
 # @app.route('/show', defaults={'email': None})
 @app.route('/show/<id>')
@@ -66,13 +66,19 @@ def page_not_found(error):
 def create_stats():
 	submissions = get_submissions("show")
 	total = float(len(submissions))
+	top_scorers = {}
 	winners = {}
 	for sub in submissions:
 		if sub.champion in winners.keys():
 			winners[sub.champion] += 1
 		else:
 			winners[sub.champion] = 1
+		if sub.top_scorer in top_scorers.keys():
+			top_scorers[sub.top_scorer] += 1
+		else:
+			top_scorers[sub.top_scorer] = 1
 	winners = sorted(winners.items(), key=operator.itemgetter(1))
+	top_scorers = sorted(top_scorers.items(), key=operator.itemgetter(1))
 	winners_array = []
 	for winner in winners:
 		current = []
@@ -81,7 +87,15 @@ def create_stats():
 		current = [winner[0],winner[1],percentage]
 		winners_array.append(current)
 	winners_array = winners_array[::-1]
-	return winners_array
+	scorer_array = []
+	for scorer in top_scorers:
+		current = []
+		percentage = float(scorer[1])/total * 100
+		percentage = format(percentage, '.2f')
+		current = [scorer[0],scorer[1],percentage]
+		scorer_array.append(current)
+	scorer_array = scorer_array[::-1]
+	return {"winners": winners_array, "scorers": scorer_array}
 
 
 def get_submissions(type):
