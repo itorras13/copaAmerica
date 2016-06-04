@@ -179,6 +179,29 @@
                         </table>
                     </div>
                 </div>
+                <div class="row" id="stats">
+                    <div class="col-lg-12">
+                        <h3>Predicted Scores</h3>
+                        <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Scores</th>
+                                <th>Number of Brackets</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead> 
+                        <tbody>
+                        {% for score in stats["scores"] %}
+                            <tr>
+                                <td>{{score[0]}}</td>
+                                <td>{{score[1]}}</td>
+                                <td>{{score[2]}}%</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody> 
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->

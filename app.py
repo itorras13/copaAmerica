@@ -70,7 +70,9 @@ def create_stats():
 	winners = {}
 	finals = {}
 	semifinals = {}
+	scores = {}
 	semi_vars = ["semi1", "semi2", "semi3", "semi4"]
+	games = ["a1h", "a2h", "a3h", "a4h", "a5h", "a6h", "b1h", "b2h", "b3h", "b4h", "b5h", "b6h", "c1h", "c2h", "c3h", "c4h", "c5h", "c6h", "d1h", "d2h", "d3h", "d4h", "d5h", "d6h"]
 	for sub in submissions:
 		if sub.champion in winners.keys():
 			winners[sub.champion] += 1
@@ -94,11 +96,22 @@ def create_stats():
 				semifinals[sub[semi]] += 1
 			else:
 				semifinals[sub[semi]] = 1
+		for game in games:
+			away = game[:2] + "a"
+			if sub[game] > sub[away]:
+				score = str(sub[game]) + "-" + str(sub[away])
+			else:
+				score = str(sub[away]) + "-" + str(sub[game])
+			if score in scores:
+				scores[score] += 1
+			else:
+				scores[score] = 1
 	winners_array = organize_stats(winners, total)
 	scorer_array = organize_stats(top_scorers, total)
 	finals_array = organize_stats(finals, total)
 	semi_array = organize_stats(semifinals, total)
-	return {"winners": winners_array, "scorers": scorer_array, "finals": finals_array, "semis": semi_array}
+	scores_array = organize_stats(scores, total*24)
+	return {"winners": winners_array, "scorers": scorer_array, "finals": finals_array, "semis": semi_array, "scores": scores_array}
 
 def organize_stats(variables, total):
 	variables = sorted(variables.items(), key=operator.itemgetter(1))
