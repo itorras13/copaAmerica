@@ -128,7 +128,7 @@ def organize_stats(variables, total):
 
 def get_submissions(type):
 	submissions = Bracket.query.order_by(Bracket.points.desc(), 
-		Bracket.id.desc()).all()
+		Bracket.first_name.asc()).all()
 	if type == "show":
 		return submissions
 	else:
