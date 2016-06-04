@@ -68,6 +68,9 @@ def create_stats():
 	total = float(len(submissions))
 	top_scorers = {}
 	winners = {}
+	finals = {}
+	semifinals = {}
+	semi_vars = ["semi1", "semi2", "semi3", "semi4"]
 	for sub in submissions:
 		if sub.champion in winners.keys():
 			winners[sub.champion] += 1
@@ -77,25 +80,37 @@ def create_stats():
 			top_scorers[sub.top_scorer] += 1
 		else:
 			top_scorers[sub.top_scorer] = 1
-	winners = sorted(winners.items(), key=operator.itemgetter(1))
-	top_scorers = sorted(top_scorers.items(), key=operator.itemgetter(1))
-	winners_array = []
-	for winner in winners:
+		final1 = sub.fin1 + "-" + sub.fin2
+		final2 = sub.fin2 + "-" + sub.fin1
+		if final1 in finals.keys():
+			finals[final1] += 1
+		elif final2 in finals.keys():
+			finals[final2] += 1
+		else:
+			finals[final1] = 1
+		sub = sub.__dict__
+		for semi in semi_vars:
+			if sub[semi] in semifinals.keys():
+				semifinals[sub[semi]] += 1
+			else:
+				semifinals[sub[semi]] = 1
+	winners_array = organize_stats(winners, total)
+	scorer_array = organize_stats(top_scorers, total)
+	finals_array = organize_stats(finals, total)
+	semi_array = organize_stats(semifinals, total)
+	return {"winners": winners_array, "scorers": scorer_array, "finals": finals_array, "semis": semi_array}
+
+def organize_stats(variables, total):
+	variables = sorted(variables.items(), key=operator.itemgetter(1))
+	array = []
+	for var in variables:
 		current = []
-		percentage = float(winner[1])/total * 100
+		percentage = float(var[1])/total * 100
 		percentage = format(percentage, '.2f')
-		current = [winner[0],winner[1],percentage]
-		winners_array.append(current)
-	winners_array = winners_array[::-1]
-	scorer_array = []
-	for scorer in top_scorers:
-		current = []
-		percentage = float(scorer[1])/total * 100
-		percentage = format(percentage, '.2f')
-		current = [scorer[0],scorer[1],percentage]
-		scorer_array.append(current)
-	scorer_array = scorer_array[::-1]
-	return {"winners": winners_array, "scorers": scorer_array}
+		current = [var[0],var[1],percentage]
+		array.append(current)
+	array = array[::-1]
+	return array
 
 
 def get_submissions(type):

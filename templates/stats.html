@@ -133,6 +133,52 @@
                         </table>
                     </div>
                 </div>
+                <div class="row" id="stats">
+                    <div class="col-lg-12">
+                        <h3>Predicted Finalists</h3>
+                        <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Final</th>
+                                <th>Number of Brackets</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead> 
+                        <tbody>
+                        {% for final in stats["finals"] %}
+                            <tr>
+                                <td>{{final[0]}}</td>
+                                <td>{{final[1]}}</td>
+                                <td>{{final[2]}}%</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody> 
+                        </table>
+                    </div>
+                </div>
+                <div class="row" id="stats">
+                    <div class="col-lg-12">
+                        <h3>Predicted Semi Finalists</h3>
+                        <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Semi Finalists</th>
+                                <th>Number of Brackets</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead> 
+                        <tbody>
+                        {% for semifinalist in stats["semis"] %}
+                            <tr>
+                                <td>{{semifinalist[0]}}</td>
+                                <td>{{semifinalist[1]}}</td>
+                                <td>{{semifinalist[2]}}%</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody> 
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
