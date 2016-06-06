@@ -237,8 +237,15 @@
     											<td>Venezuela</td>
     											<th>C2</th>
     											<td>Mexico</td>
-    											<td>{{ sub.c2h }}</td>
-    											<td>{{ sub.c2a }}</td>
+                                                {% if sub.c2h==3 and sub.c2a==1 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.c2h>sub.c2a %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+    											<td bgcolor={{color}}>(3)&nbsp;&nbsp;{{ sub.c2h }}</td>
+    											<td bgcolor={{color}}>{{ sub.c2a }}&nbsp;&nbsp;(1)</td>
     											<td>Uruguay</td>
     										</tr>
     										<tr>
