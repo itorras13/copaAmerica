@@ -94,6 +94,10 @@
     						<div class="col-lg-1"></div>
     						<div class="col-lg-10 text-center">
     							<h3>Submission {{ sub.submission_number }} Points: {{ sub.points }}</h1>
+                                <span style="background-color:#00cc00">Green means score was predicted correctly (3 points)</span><br>
+                                <span style="background-color:#ffff66">Yellow means winner or tie was predicted correctly (1 point)</span><br>
+                                <span style="background-color:#ff4d4d">Red means winner or tie was predicted wrong (0 points)</span><br> 
+                                (1) Actual scored in parantheses (0)
     								<br>
     								<table class="table table-responsive">
     									<thead>
@@ -115,13 +119,27 @@
     										<tr>
     											<th>A1</th>
     											<td>USA</td>
-    											<td>{{ sub.a1h }}</td>
-    											<td>{{ sub.a1a }}</td>
+                                                {% if sub.a1a==2 and sub.a1h==0 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.a1a>sub.a1h %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+    											<td bgcolor={{color}}>(0)&nbsp;&nbsp;{{ sub.a1h }}</td>
+    											<td bgcolor={{color}}>{{ sub.a1a }}&nbsp;&nbsp;(2)</td>
     											<td>Colombia</td>
     											<th>A2</th>
     											<td>Costa Rica</td>
-    											<td>{{ sub.a2h }}</td>
-    											<td>{{ sub.a2a }}</td>
+                                                {% if sub.a2a==0 and sub.a2h==0 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.a2a==sub.a2h %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+    											<td bgcolor={{color}}>(0)&nbsp;&nbsp;{{ sub.a2h }}</td>
+    											<td bgcolor={{color}}>{{ sub.a2a }}&nbsp;&nbsp;(0)</td>
     											<td>Paraguay</td>
     										</tr>
     										<tr>
@@ -154,13 +172,27 @@
     										<tr>
     											<th>B1</th>
     											<td>Haiti</td>
-    											<td>{{ sub.b1h }}</td>
-    											<td>{{ sub.b1a }}</td>
+                                                {% if sub.b1a==1 and sub.b1h==0 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.b1a>sub.b1h %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+    											<td bgcolor={{color}}>(0)&nbsp;&nbsp;{{ sub.b1h }}</td>
+    											<td bgcolor={{color}}>{{ sub.b1a }}&nbsp;&nbsp;(1)</td>
     											<td>Peru</td>
     											<th>B2</th>
     											<td>Brazil</td>
-    											<td>{{ sub.b2h }}</td>
-    											<td>{{ sub.b2a }}</td>
+                                                {% if sub.b2a==0 and sub.b2h==0 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.b2a==sub.b2h %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td bgcolor={{color}}>(0)&nbsp;&nbsp;{{ sub.b2h }}</td>
+                                                <td bgcolor={{color}}>{{ sub.b2a }}&nbsp;&nbsp;(0)</td>
     											<td>Ecuador</td>
     										</tr>
     										<tr>
@@ -193,8 +225,15 @@
     										<tr>
     											<th>C1</th>
     											<td>Jamaica</td>
-    											<td>{{ sub.c1h }}</td>
-    											<td>{{ sub.c1a }}</td>
+                                                {% if sub.c1a==1 and sub.c1h==0 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.c1a>sub.c1h %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td bgcolor={{color}}>(0)&nbsp;&nbsp;{{ sub.c1h }}</td>
+                                                <td bgcolor={{color}}>{{ sub.c1a }}&nbsp;&nbsp;(1)</td>
     											<td>Venezuela</td>
     											<th>C2</th>
     											<td>Mexico</td>
