@@ -290,8 +290,15 @@
     											<td>Bolivia</td>
     											<th>D2</th>
     											<td>Argentina</td>
-    											<td>{{ sub.d2h }}</td>
-    											<td>{{ sub.d2a }}</td>
+                                                {% if sub.d2h==2 and sub.d2a==1 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.d2h>sub.d2a %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+    											<td bgcolor={{color}}>(2)&nbsp;&nbsp;{{ sub.d2h }}</td>
+    											<td bgcolor={{color}}>{{ sub.d2a }}&nbsp;&nbsp;(1)</td>
     											<td>Chile</td>
     										</tr>
     										<tr>
