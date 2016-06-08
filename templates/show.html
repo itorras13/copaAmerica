@@ -157,8 +157,15 @@
     											<td>Costa Rica</td>
     											<th>A4</th>
     											<td>Colombia</td>
-    											<td>{{ sub.a4h }}</td>
-    											<td>{{ sub.a4a }}</td>
+                                                {% if sub.a4h==2 and sub.a4a==1 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.a4h>sub.a4a %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+    											<td bgcolor={{color}}>(2)&nbsp;&nbsp;{{ sub.a4h }}</td>
+    											<td bgcolor={{color}}>{{ sub.a4a }}(4)&nbsp;&nbsp;(1)</td>
     											<td>Paraguay</td>
     										</tr>
     										<tr>
