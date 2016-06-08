@@ -145,8 +145,15 @@
     										<tr>
     											<th>A3</th>
     											<td>USA</td>
-    											<td>{{ sub.a3h }}</td>
-    											<td>{{ sub.a3a }}</td>
+                                                {% if sub.a3h==4 and sub.a3a==0 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.a3h>sub.a3a %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+    											<td bgcolor={{color}}>(4)&nbsp;&nbsp;{{ sub.a3h }}</td>
+    											<td bgcolor={{color}}>{{ sub.a3a }}&nbsp;&nbsp;(0)</td>
     											<td>Costa Rica</td>
     											<th>A4</th>
     											<td>Colombia</td>
