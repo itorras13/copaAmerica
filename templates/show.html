@@ -224,8 +224,15 @@
     											<td>Haiti</td>
     											<th>B4</th>
     											<td>Ecuador</td>
-    											<td>{{ sub.b4h }}</td>
-    											<td>{{ sub.b4a }}</td>
+                                                {% if sub.b4h==2 and sub.b4a==2 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.b3h==sub.b3a %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+    											<td bgcolor={{color}}>(2)&nbsp;&nbsp;{{ sub.b4h }}</td>
+    											<td bgcolor={{color}}>{{ sub.b4a }}&nbsp;&nbsp;(2)</td>
     											<td>Peru</td>
     										</tr>
     										<tr>
