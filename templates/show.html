@@ -358,8 +358,15 @@
     											<td>Bolivia</td>
     											<th>D4</th>
     											<td>Argentina</td>
-    											<td>{{ sub.d4h }}</td>
-    											<td>{{ sub.d4a }}</td>
+                                                {% if sub.d4h==5 and sub.d4a==0 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.d4h > sub.d4a %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+    											<td bgcolor={{color}}>(5)&nbsp;&nbsp;{{ sub.d4h }}</td>
+    											<td bgcolor={{color}}>{{ sub.d4a }}&nbsp;&nbsp;(0)</td>
     											<td>Panama</td>
     										</tr>
     										<tr>
