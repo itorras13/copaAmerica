@@ -183,8 +183,15 @@
     											<td>Paraguay</td>
     											<th>A6</th>
     											<td>Colombia</td>
-    											<td>{{ sub.a6h }}</td>
-    											<td>{{ sub.a6a }}</td>
+                                                {% if sub.a6h==2 and sub.a6a==3 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.a6h<sub.a6a %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td bgcolor={{color}}>(2)&nbsp;&nbsp;{{ sub.a6h }}</td>
+                                                <td bgcolor={{color}}>{{ sub.a6a }}&nbsp;&nbsp;(3)</td>
     											<td>Costa Rica</td>
     										</tr>
     										<tr>
