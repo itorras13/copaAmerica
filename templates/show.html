@@ -171,8 +171,15 @@
     										<tr>
     											<th>A5</th>
     											<td>USA</td>
-    											<td>{{ sub.a5h }}</td>
-    											<td>{{ sub.a5a }}</td>
+    											{% if sub.a5h==1 and sub.a5a==0 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.a5h>sub.a5a %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td bgcolor={{color}}>(1)&nbsp;&nbsp;{{ sub.a5h }}</td>
+                                                <td bgcolor={{color}}>{{ sub.a5a }}&nbsp;&nbsp;(0)</td>
     											<td>Paraguay</td>
     											<th>A6</th>
     											<td>Colombia</td>
@@ -384,6 +391,13 @@
     										<tr>
     											<th colspan="10">Group Standings</th>
     										</tr>
+                                            <tr>
+                                                <th colspan="10">
+                                                <span style="background-color:#00cc00">Green means position was predicted correctly (3 points)</span><br>
+                                                <span style="background-color:#ffff66">Yellow means team was predicted to pass but in wrong position (2 point)</span><br>
+                                                <span style="background-color:#ff4d4d">Red means the team did not pass(0 points)</span><br> 
+                                                </th>
+                                            </tr>
     										<tr>
     											<th>Group</th>
     											<th colspan="2">1st</th>
