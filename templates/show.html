@@ -252,8 +252,15 @@
     										<tr>
     											<th>B5</th>
     											<td>Ecuador</td>
-    											<td>{{ sub.b5h }}</td>
-    											<td>{{ sub.b5a }}</td>
+                                                {% if sub.b5h==4 and sub.b5a==0 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.b5h>sub.b5a %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td bgcolor={{color}}>(4)&nbsp;&nbsp;{{ sub.b5h }}</td>
+                                                <td bgcolor={{color}}>{{ sub.b5a }}&nbsp;&nbsp;(0)</td>
     											<td>Haiti</td>
     											<th>B6</th>
     											<td>Brazil</td>
