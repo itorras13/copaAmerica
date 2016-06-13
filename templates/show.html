@@ -264,8 +264,15 @@
     											<td>Haiti</td>
     											<th>B6</th>
     											<td>Brazil</td>
-    											<td>{{ sub.b6h }}</td>
-    											<td>{{ sub.b6a }}</td>
+    											{% if sub.b6h==0 and sub.b6a==1 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.b6h < sub.b6a %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td bgcolor={{color}}>(0)&nbsp;&nbsp;{{ sub.b6h }}</td>
+                                                <td bgcolor={{color}}>{{ sub.b6a }}&nbsp;&nbsp;(1)</td>
     											<td>Peru</td>
     										</tr>
     										<tr>
@@ -439,8 +446,22 @@
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.a2 }}</td>
     											<th>B</th>
-    											<td colspan="2">{{ sub.b1 }}</td>
-    											<td colspan="2">{{ sub.b2 }}</td>
+    											{% if sub.b1=='Peru'%}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.b1=='Ecuador' %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td colspan="2" bgcolor={{color}}>{{ sub.b1 }}</td>
+    											{% if sub.b2=='Ecuador'%}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.b2=='Peru' %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td colspan="2" bgcolor={{color}}>{{ sub.b2 }}</td>
     										</tr>
     										<tr>
     											<th>C</th>
