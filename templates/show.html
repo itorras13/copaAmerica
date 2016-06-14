@@ -333,8 +333,15 @@
     										<tr>
     											<th>C5</th>
     											<td>Mexico</td>
-    											<td>{{ sub.c5h }}</td>
-    											<td>{{ sub.c5a }}</td>
+    											{% if sub.c5h==1 and sub.c5a==1 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.c5h == sub.c5a %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td bgcolor={{color}}>(1)&nbsp;&nbsp;{{ sub.c5h }}</td>
+                                                <td bgcolor={{color}}>{{ sub.c5a }}&nbsp;&nbsp;(1)</td>
     											<td>Venezuela</td>
     											<th>C6</th>
     											<td>Uruguay</td>
