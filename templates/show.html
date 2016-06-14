@@ -472,8 +472,22 @@
     										</tr>
     										<tr>
     											<th>C</th>
-    											<td colspan="2">{{ sub.c1 }}</td>
-    											<td colspan="2">{{ sub.c2 }}</td>
+    											{% if sub.c1=='Mexico'%}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.c1=='Venezuela' %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td colspan="2" bgcolor={{color}}>{{ sub.c1 }}</td>
+                                                {% if sub.c2=='Venezuela'%}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.c2=='Mexico' %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td colspan="2" bgcolor={{color}}>{{ sub.c2 }}</td>
     											<th>D</th>
     											<td colspan="2">{{ sub.d1 }}</td>
     											<td colspan="2">{{ sub.d2 }}</td>
