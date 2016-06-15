@@ -414,8 +414,15 @@
     										<tr>
     											<th>D5</th>
     											<td>Chile</td>
-    											<td>{{ sub.d5h }}</td>
-    											<td>{{ sub.d5a }}</td>
+    											{% if sub.d5h==4 and sub.d5a==2 %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.d5h > sub.d5a %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td bgcolor={{color}}>(4)&nbsp;&nbsp;{{ sub.d5h }}</td>
+                                                <td bgcolor={{color}}>{{ sub.d5a }}&nbsp;&nbsp;(2)</td>
     											<td>Panama</td>
     											<th>D6</th>
     											<td>Argentina</td>
