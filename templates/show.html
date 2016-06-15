@@ -510,8 +510,22 @@
                                                 {% endif %}
                                                 <td colspan="2" bgcolor={{color}}>{{ sub.c2 }}</td>
     											<th>D</th>
-    											<td colspan="2">{{ sub.d1 }}</td>
-    											<td colspan="2">{{ sub.d2 }}</td>
+    											{% if sub.d1=='Argentina'%}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.d1=='Chile' %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td colspan="2" bgcolor={{color}}>{{ sub.d1 }}</td>
+                                                {% if sub.d2=='Chile'%}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.d2=='Argentina' %}
+                                                    {% set color='#ffff66' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+                                                <td colspan="2" bgcolor={{color}}>{{ sub.d2 }}</td>
     										</tr>
     										<tr>
     											<th colspan="10">Semi Finalists</th>
