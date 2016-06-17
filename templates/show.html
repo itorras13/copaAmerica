@@ -532,27 +532,36 @@
     										</tr>
     										<tr>
     											<td></td>
-                                                {% set alive_teams=["Colombia", "USA", "Peru", "Ecuador", 
+                                                {% set alive_teams=["Colombia", "USA", "Peru", 
                                                 "Mexico", "Venezuela", "Argentina", "Chile"] %}
-                                                {% if sub.semi1 not in alive_teams %}
+                                                {% set semi_teams=["USA"] %}
+                                                {% if sub.semi1 in semi_teams %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.semi1 not in alive_teams %}
                                                     {% set color='#ff4d4d' %}
                                                 {% else %}
                                                     {% set color='' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.semi1 }}</td>
-                                                {% if sub.semi2 not in alive_teams %}
+                                                {% if sub.semi2 in semi_teams %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.semi2 not in alive_teams %}
                                                     {% set color='#ff4d4d' %}
                                                 {% else %}
                                                     {% set color='' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.semi2 }}</td>
-                                                {% if sub.semi3 not in alive_teams %}
+                                                {% if sub.semi3 in semi_teams %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.semi3 not in alive_teams %}
                                                     {% set color='#ff4d4d' %}
                                                 {% else %}
                                                     {% set color='' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.semi3 }}</td>
-                                                {% if sub.semi4 not in alive_teams %}
+                                                {% if sub.semi4 in semi_teams %}
+                                                    {% set color='#00cc00' %}
+                                                {% elif sub.semi4 not in alive_teams %}
                                                     {% set color='#ff4d4d' %}
                                                 {% else %}
                                                     {% set color='' %}
