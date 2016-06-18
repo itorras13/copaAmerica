@@ -582,25 +582,25 @@
     										</tr>
     										<tr>
     											<td></td>
-                                                {% if sub.fin1 not in alive_teams %}
+                                                {% if sub.fin1 not in alive_teams+semi_teams %}
                                                     {% set color='#ff4d4d' %}
                                                 {% else %}
                                                     {% set color='' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.fin1 }}</td>
-                                                {% if sub.fin2 not in alive_teams %}
+                                                {% if sub.fin2 not in alive_teams+semi_teams %}
                                                     {% set color='#ff4d4d' %}
                                                 {% else %}
                                                     {% set color='' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.fin2 }}</td>
-                                                {% if sub.champion not in alive_teams %}
+                                                {% if sub.champion not in alive_teams+semi_teams %}
                                                     {% set color='#ff4d4d' %}
                                                 {% else %}
                                                     {% set color='' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.champion }}</td>
-                                                {% if sub.third_place not in alive_teams %}
+                                                {% if sub.third_place not in alive_teams+semi_teams %}
                                                     {% set color='#ff4d4d' %}
                                                 {% else %}
                                                     {% set color='' %}
