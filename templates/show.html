@@ -532,9 +532,9 @@
     										</tr>
     										<tr>
     											<td></td>
-                                                {% set alive_teams=["Colombia", "USA", "Peru", 
-                                                "Mexico", "Venezuela", "Argentina", "Chile"] %}
-                                                {% set semi_teams=["USA"] %}
+                                                {% set alive_teams=["USA", "Mexico", "Venezuela", 
+                                                "Argentina", "Chile"] %}
+                                                {% set semi_teams=["USA", "Colombia"] %}
                                                 {% if sub.semi1 in semi_teams %}
                                                     {% set color='#00cc00' %}
                                                 {% elif sub.semi1 not in alive_teams %}
