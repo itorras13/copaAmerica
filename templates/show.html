@@ -572,21 +572,17 @@
     										</tr>
     										<tr>
     											<td></td>
-                                                {% set finalists=['Argentina', 'Chile', 'Colombia'] %}
+                                                {% set finalists=['Argentina', 'Chile'] %}
                                                 {% if sub.fin1 not in finalists %}
                                                     {% set color='#ff4d4d' %}
-                                                {% elif sub.fin1=='Argentina' %}
-                                                    {% set color='#00cc00' %}
                                                 {% else %}
-                                                    {% set color='' %}
+                                                    {% set color='#00cc00' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.fin1 }}</td>
                                                 {% if sub.fin2 not in finalists %}
                                                     {% set color='#ff4d4d' %}
-                                                {% elif sub.fin2=='Argentina' %}
-                                                    {% set color='#00cc00' %}
                                                 {% else %}
-                                                    {% set color='' %}
+                                                    {% set color='#00cc00' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.fin2 }}</td>
                                                 {% if sub.champion not in finalists %}
@@ -595,7 +591,7 @@
                                                     {% set color='' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.champion }}</td>
-                                                {% if sub.third_place not in ['USA', 'Chile', 'Colombia'] %}
+                                                {% if sub.third_place not in ['USA', 'Colombia'] %}
                                                     {% set color='#ff4d4d' %}
                                                 {% else %}
                                                     {% set color='' %}
