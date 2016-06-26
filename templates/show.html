@@ -591,10 +591,10 @@
                                                     {% set color='' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.champion }}</td>
-                                                {% if sub.third_place not in ['USA', 'Colombia'] %}
-                                                    {% set color='#ff4d4d' %}
+                                                {% if sub.third_place == 'Colombia' %}
+                                                    {% set color='#00cc00' %}
                                                 {% else %}
-                                                    {% set color='' %}
+                                                    {% set color='#ff4d4d' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.third_place }}</td>
     											<td></td>
