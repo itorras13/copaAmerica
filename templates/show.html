@@ -585,10 +585,10 @@
                                                     {% set color='#00cc00' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.fin2 }}</td>
-                                                {% if sub.champion not in finalists %}
-                                                    {% set color='#ff4d4d' %}
+                                                {% if sub.champion == 'Chile' %}
+                                                    {% set color='#00cc00' %}
                                                 {% else %}
-                                                    {% set color='' %}
+                                                    {% set color='#ff4d4d' %}
                                                 {% endif %}
     											<td colspan="2" bgcolor={{color}}>{{ sub.champion }}</td>
                                                 {% if sub.third_place == 'Colombia' %}
@@ -603,7 +603,12 @@
     											<th colspan="10">Top Scorer</th>
     										</tr>
     										<tr>
-    											<td colspan="10">{{ sub.top_scorer }}</td>
+                                                {% if sub.top_scorer == 'Other' %}
+                                                    {% set color='#00cc00' %}
+                                                {% else %}
+                                                    {% set color='#ff4d4d' %}
+                                                {% endif %}
+    											<td colspan="10" bgcolor={{color}}>{{ sub.top_scorer }}</td>
     										</tr>
     									</tbody>
     								</table>
